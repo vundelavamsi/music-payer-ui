@@ -7,7 +7,8 @@ import nextTrack from "../../images/nextTrack.svg"
 import play from "../../images/play.svg"
 
 
-const MusicPlayer = () => {
+const MusicPlayer = ({song}) => {
+    console.log(song)
     // const response = await fetch("https://cms.samespace.com/assets/4f718272-6b0e-42ee-92d0-805b783cb471")
     // console.log(response);
     return (
@@ -16,7 +17,7 @@ const MusicPlayer = () => {
             <h1 className='heading'>Starboy</h1>
             <p className='artist-name'>The Weekend</p>
         </div>
-        <img src="https://cms.samespace.com/assets/4f718272-6b0e-42ee-92d0-805b783cb471" alt='cover' className='cover-image' />
+        <img src={`https://cms.samespace.com/assets/${song.cover}`} alt='cover' className='cover-image' />
         <div className='controls'>
             <div className='seeker-container'>
 

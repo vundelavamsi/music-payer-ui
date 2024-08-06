@@ -7,8 +7,8 @@
 
 .app-container {
   display: flex;
-  background-color: #000;
-  background-image: linear-gradient(to right, #33425E, #000000);
+  /* background-color: #000; */
+  /* background-image: linear-gradient(to right, #33425E, #000000); */
   background-size: cover;
   /* height: 100vh; */
   /* min-width: 100vw; */

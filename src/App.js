@@ -18,11 +18,24 @@ const App = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (currentSong && currentSong.accent) {
+      const accentColor = currentSong.accent;
+      document.body.style.backgroundImage = `linear-gradient(to right, ${accentColor}, #000000)`;
+    } else {
+      document.body.style.backgroundImage = 'linear-gradient(to right, #33425E, #000000)'; // Reset to default if no song selected
+    }
+  }, [currentSong]);
+
+  const handleSongSelect = (song) => {
+    setCurrentSong(song);
+  };
+
   return (
     <div className="app-container">
       <ProfileSection />
-      <MusicList songs={songs} onSelectSong={setCurrentSong} />
-      <MusicPlayer song={currentSong} />
+      <MusicList songs={songs} onSelectSong={handleSongSelect} />
+      { currentSong && <MusicPlayer song={currentSong} /> }
     </div>
   );
 };

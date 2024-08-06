@@ -22,6 +22,10 @@
   opacity: 50%;
 }
 
+.music-category-button:hover {
+    cursor: pointer;
+}
+
 .search-element-container {
   position: relative;
   top: 30px;

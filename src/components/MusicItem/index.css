@@ -9,6 +9,10 @@
     margin-bottom: 6px;
 }
 
+.music-item-container:hover {
+    cursor: pointer;
+}
+
 .music-profile-name-section {
     display: flex;
 }

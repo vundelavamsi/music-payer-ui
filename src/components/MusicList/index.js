@@ -3,7 +3,7 @@ import "./index.css";
 import search from "../../images/search.svg";
 import MusicItem from "../MusicItem";
 
-const MusicList = ({ songs }) => {
+const MusicList = ({ songs, onSelectSong }) => {
   const [filteredSongs, setFilteredSongs] = useState(songs);
   const [searchQuery, setSearchQuery] = useState("");
   const [category, setCategory] = useState("");
@@ -65,7 +65,7 @@ const MusicList = ({ songs }) => {
       </div>
       <div className="songs-list-container">
         {filteredSongs.map((eachSong) => (
-          <MusicItem eachSong={eachSong} key={eachSong.id} />
+          <MusicItem eachSong={eachSong} key={eachSong.id} onClick={() => onSelectSong(eachSong)} />
         ))}
       </div>
     </div>

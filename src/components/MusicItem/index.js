@@ -2,9 +2,9 @@ import React from 'react'
 import './index.css'
 // import cover from "../../images/cover.svg"
 
-const MusicItem = ({eachSong}) => {
+const MusicItem = ({eachSong, onClick}) => {
   return (
-    <div className='music-item-container'>
+    <div className='music-item-container' onClick={onClick}>
         <div className='music-profile-name-section'>
             <img className='music-cover' src={`https://cms.samespace.com/assets/${eachSong.cover}`} alt={eachSong.name} />
             <div className='music-heading-artist'>
