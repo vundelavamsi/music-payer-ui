@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import ProfileSection from "./components/ProfileScection";
+import MusicList from "./components/MusicList";
+import MusicPlayer from "./components/MusicPlayer";
+import "./App.css";
+import { useEffect, useState } from "react";
 
-function App() {
+const App = () => {
+  const [songs, setSongs] = useState([]);
+  const [currentSong, setCurrentSong] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("https://cms.samespace.com/items/songs");
+      const data = await response.json();
+      setSongs(data.data);
+      setCurrentSong(data.data[0] || null);
+    }
+    fetchData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container">
+      <ProfileSection />
+      <MusicList songs={songs} onSelectSong={setCurrentSong} />
+      <MusicPlayer song={currentSong} />
     </div>
   );
-}
+};
 
 export default App;

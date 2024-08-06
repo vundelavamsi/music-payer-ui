@@ -1,0 +1,45 @@
+.music-item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    padding: 8px;
+    position: relative;
+    width: 350px;
+    margin-bottom: 6px;
+}
+
+.music-profile-name-section {
+    display: flex;
+}
+
+.music-cover {
+    margin-right: 18px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.music-heading-artist {
+    
+}
+
+.music-heading {
+color: white;
+font-size: 18px;
+font-weight: 400;
+}
+
+.music-artist {
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 60%;
+}
+
+.music-timer {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+    opacity: 60%;
+}

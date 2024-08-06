@@ -1,0 +1,64 @@
+.music-list-container {
+  /* width: 25%; */
+  position: relative;
+  width: 400px;
+  top: 40px;
+  left: 150px;
+  height: 90%;
+}
+
+.music-category-container {
+  display: flex;
+  width: 250px;
+  gap: 40px;
+}
+
+.music-category-button {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  background-color: transparent;
+  border: 0;
+  opacity: 50%;
+}
+
+.search-element-container {
+  position: relative;
+  top: 30px;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 8px;
+  /* background-color: #282219; */
+  background: #ffffff14;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.search-element {
+  width: 90%;
+  color: #ffffff;
+  background-color: transparent;
+  border: 0;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.search-icon {
+  width: 32px;
+  height: 32px;
+  opacity: 40%;
+}
+
+.songs-list-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  top: 60px;
+}
+
+.music-category-button.active {
+  opacity: 100%;
+}

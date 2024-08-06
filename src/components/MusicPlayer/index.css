@@ -1,0 +1,71 @@
+.music-player-container {
+    /* width: 60%; */
+    position: relative;
+    top: 100px;
+    left: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    height: 90%;
+}
+
+.song-heading-artist-container {
+    gap: 8px;
+}
+
+.heading {
+    color: white;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.artist-name {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+    opacity: 60%;
+}
+
+.cover-image {
+    width: 480px;
+    height: 510px;
+    border-radius: 8px;
+}
+
+.controls {
+    display: flex;
+    width: 480px;
+}
+
+.seeker-containe {
+
+}
+
+.music-controls-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.music-details-container, .volume-container {
+    background-color: #FFFFFF1A;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.music-play-pause-next-prev-container {
+    height: Fixed (50.24px)px;
+    display: flex;
+    justify-content: space-between;
+    width: 176px;
+}
+
+.prev-icon, .next-icon {
+    color: #FFFFFF;
+    opacity: 60%;
+}
