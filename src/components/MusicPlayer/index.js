@@ -14,8 +14,8 @@ const MusicPlayer = ({song}) => {
     return (
     <div className='music-player-container'>
         <div className='song-heading-artist-container'>
-            <h1 className='heading'>Starboy</h1>
-            <p className='artist-name'>The Weekend</p>
+            <h1 className='heading'>{song.name}</h1>
+            <p className='artist-name'>{song.artist}</p>
         </div>
         <img src={`https://cms.samespace.com/assets/${song.cover}`} alt='cover' className='cover-image' />
         <div className='controls'>
