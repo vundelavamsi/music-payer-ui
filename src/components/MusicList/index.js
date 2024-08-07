@@ -3,7 +3,7 @@ import "./index.css";
 import search from "../../images/search.svg";
 import MusicItem from "../MusicItem";
 
-const MusicList = ({ songs, onSelectSong }) => {
+const MusicList = ({ songs, onSelectSong, currentSong }) => {
   const [filteredSongs, setFilteredSongs] = useState(songs);
   const [searchQuery, setSearchQuery] = useState("");
   const [category, setCategory] = useState("");
@@ -14,7 +14,7 @@ const MusicList = ({ songs, onSelectSong }) => {
     // Filter by category
     if (category === "top-track") {
       result = result.filter((song) => song.top_track === true);
-      console.log(result)
+      console.log(result);
     }
 
     // Filter by search query
@@ -29,6 +29,29 @@ const MusicList = ({ songs, onSelectSong }) => {
     setFilteredSongs(result);
   }, [songs, category, searchQuery]);
 
+  useEffect(() => {
+    const fetchDuration = (audioUrl) => {
+      return new Promise((resolve) => {
+        const audio = new Audio(audioUrl);
+        audio.onloadedmetadata = () => {
+          resolve(audio.duration);
+        };
+      });
+    };
+
+    const fetchSongsWithDuration = async () => {
+      const result = await Promise.all(
+        songs.map(async (song) => {
+          const duration = await fetchDuration(song.url);
+          return { ...song, duration };
+        })
+      );
+      setFilteredSongs(result);
+    };
+
+    fetchSongsWithDuration();
+  }, [songs, category, searchQuery]);
+
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
   };
@@ -41,14 +64,16 @@ const MusicList = ({ songs, onSelectSong }) => {
     <div className="music-list-container">
       <div className="music-category-container">
         <button
-           className={`music-category-button ${category === '' ? 'active' : ''}`}
+          className={`music-category-button ${category === "" ? "active" : ""}`}
           onClick={handleCategoryChange}
           value=""
         >
           For You
         </button>
         <button
-          className={`music-category-button ${category === 'top-track' ? 'active' : ''}`}
+          className={`music-category-button ${
+            category === "top-track" ? "active" : ""
+          }`}
           onClick={handleCategoryChange}
           value="top-track"
         >
@@ -65,7 +90,12 @@ const MusicList = ({ songs, onSelectSong }) => {
       </div>
       <div className="songs-list-container">
         {filteredSongs.map((eachSong) => (
-          <MusicItem eachSong={eachSong} key={eachSong.id} onClick={() => onSelectSong(eachSong)} />
+          <MusicItem
+            eachSong={eachSong}
+            key={eachSong.id}
+            onClick={() => onSelectSong(eachSong)}
+            currentSong={currentSong}
+          />
         ))}
       </div>
     </div>

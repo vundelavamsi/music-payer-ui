@@ -35,10 +35,25 @@
 .controls {
     display: flex;
     width: 480px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .seeker-container {
+    width: 80%;
+    accent-color: white;
+    border: 0;
+}
 
+.time-display {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.timer {
+    color: white;
 }
 
 .music-controls-container {
@@ -68,4 +83,9 @@
 .prev-icon, .next-icon {
     color: #FFFFFF;
     opacity: 60%;
+}
+
+.play-pause-button {
+    background-color: transparent;
+    border: 0;
 }

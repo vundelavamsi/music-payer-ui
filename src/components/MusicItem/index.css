@@ -3,10 +3,10 @@
     justify-content: space-between;
     align-items: center;
     border-radius: 8px;
-    padding: 8px;
+    padding: 10px;
     position: relative;
     width: 350px;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
 .music-item-container:hover {
@@ -42,4 +42,8 @@ font-weight: 400;
     font-size: 18px;
     font-weight: 400;
     opacity: 60%;
+}
+
+.music-item-container.selected {
+    background: #FFFFFF14; 
 }

@@ -34,8 +34,8 @@ const App = () => {
   return (
     <div className="app-container">
       <ProfileSection />
-      <MusicList songs={songs} onSelectSong={handleSongSelect} />
-      { currentSong && <MusicPlayer song={currentSong} /> }
+      <MusicList songs={songs} onSelectSong={handleSongSelect} currentSong={currentSong} />
+      { currentSong && <MusicPlayer song={currentSong} songs={songs} onSelectSong={handleSongSelect} /> }
     </div>
   );
 };
