@@ -8,7 +8,7 @@ const MusicList = ({ songs, onSelectSong, currentSong, showList }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [category, setCategory] = useState("");
   const [songsWithDuration, setSongsWithDuration] = useState(songs);
-  console.log(songs)
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchDuration = (audioUrl) => {
@@ -28,7 +28,7 @@ const MusicList = ({ songs, onSelectSong, currentSong, showList }) => {
         })
       );
       setSongsWithDuration(result);
-      console.log(result)
+      setIsLoading(false);
     };
     fetchSongsWithDuration();
   }, [songs]);
@@ -38,7 +38,7 @@ const MusicList = ({ songs, onSelectSong, currentSong, showList }) => {
 
     // Filter by category
     if (category === "top-track") {
-        console.log(category)
+      console.log(category);
       result = result.filter((song) => song.top_track === true);
       console.log(result);
     }
@@ -51,11 +51,9 @@ const MusicList = ({ songs, onSelectSong, currentSong, showList }) => {
           song.artist.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
-    console.log(result)
+    console.log(result);
     setFilteredSongs(result);
   }, [songsWithDuration, category, searchQuery]);
-
-  
 
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
@@ -66,7 +64,11 @@ const MusicList = ({ songs, onSelectSong, currentSong, showList }) => {
   };
 
   return (
-    <div className={showList ? "music-list-container" : "music-list-container display-none"}>
+    <div
+      className={
+        showList ? "music-list-container" : "music-list-container display-none"
+      }
+    >
       <div className="music-category-container">
         <button
           className={`music-category-button ${category === "" ? "active" : ""}`}
@@ -93,16 +95,20 @@ const MusicList = ({ songs, onSelectSong, currentSong, showList }) => {
         />
         <img src={search} alt="search-icon" className="search-icon" />
       </div>
-      <div className="songs-list-container">
-        {filteredSongs.map((eachSong) => (
-          <MusicItem
-            eachSong={eachSong}
-            key={eachSong.id}
-            onClick={() => onSelectSong(eachSong)}
-            currentSong={currentSong}
-          />
-        ))}
-      </div>
+      {isLoading ? (
+        <div className="loading-indicator">Loading...</div>
+      ) : (
+        <div className="songs-list-container">
+          {filteredSongs.map((eachSong) => (
+            <MusicItem
+              eachSong={eachSong}
+              key={eachSong.id}
+              onClick={() => onSelectSong(eachSong)}
+              currentSong={currentSong}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
