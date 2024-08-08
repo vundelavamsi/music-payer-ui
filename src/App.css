@@ -7,9 +7,33 @@
 
 .app-container {
   display: flex;
-  /* background-color: #000; */
-  /* background-image: linear-gradient(to right, #33425E, #000000); */
   background-size: cover;
-  /* height: 100vh; */
-  /* min-width: 100vw; */
+  min-height: 100vh;
+  padding: 30px;
+}
+
+.show-list {
+  display: none;
+  color: white;
+}
+
+@media (max-width: 1024px) {
+  .app-container {
+    padding: 20px;
+    display: block;
+  }
+  .show-list {
+    align-items: center;
+    border: 1px solid #868686;
+    border-radius: 8px;
+    color: #fff;
+    display: flex;
+    float: right;
+    justify-content: end;
+    margin: 8px 0;
+    padding: 8px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
 }

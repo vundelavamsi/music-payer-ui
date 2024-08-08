@@ -2,11 +2,14 @@ import ProfileSection from "./components/ProfileScection";
 import MusicList from "./components/MusicList";
 import MusicPlayer from "./components/MusicPlayer";
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const App = () => {
   const [songs, setSongs] = useState([]);
   const [currentSong, setCurrentSong] = useState(null);
+  const [showList, setShowList] = useState(true);
+
+  const appContainerRef = useRef(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -21,9 +24,13 @@ const App = () => {
   useEffect(() => {
     if (currentSong && currentSong.accent) {
       const accentColor = currentSong.accent;
-      document.body.style.backgroundImage = `linear-gradient(to right, ${accentColor}, #000000)`;
+      if (appContainerRef.current) {
+        appContainerRef.current.style.backgroundImage = `linear-gradient(to right, ${accentColor}, #000000)`;
+      }
     } else {
-      document.body.style.backgroundImage = 'linear-gradient(to right, #33425E, #000000)'; // Reset to default if no song selected
+      if (appContainerRef.current) {
+        appContainerRef.current.style.backgroundImage = 'linear-gradient(to right, #33425E, #000000)'; // Reset to default if no song selected
+      }
     }
   }, [currentSong]);
 
@@ -32,10 +39,11 @@ const App = () => {
   };
 
   return (
-    <div className="app-container">
+    <div className="app-container" ref={appContainerRef}>
       <ProfileSection />
-      <MusicList songs={songs} onSelectSong={handleSongSelect} currentSong={currentSong} />
-      { currentSong && <MusicPlayer song={currentSong} songs={songs} onSelectSong={handleSongSelect} /> }
+      <div className="show-list" onClick={() => setShowList(!showList)}>{!showList ? "Show List" : "Hide List"}</div>
+      <MusicList songs={songs} onSelectSong={handleSongSelect} currentSong={currentSong} showList={showList} />
+      { currentSong && <MusicPlayer song={currentSong} songs={songs} onSelectSong={handleSongSelect} showList={showList} /> }
     </div>
   );
 };

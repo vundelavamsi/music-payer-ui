@@ -3,31 +3,12 @@ import "./index.css";
 import search from "../../images/search.svg";
 import MusicItem from "../MusicItem";
 
-const MusicList = ({ songs, onSelectSong, currentSong }) => {
+const MusicList = ({ songs, onSelectSong, currentSong, showList }) => {
   const [filteredSongs, setFilteredSongs] = useState(songs);
   const [searchQuery, setSearchQuery] = useState("");
   const [category, setCategory] = useState("");
-
-  useEffect(() => {
-    let result = songs;
-
-    // Filter by category
-    if (category === "top-track") {
-      result = result.filter((song) => song.top_track === true);
-      console.log(result);
-    }
-
-    // Filter by search query
-    if (searchQuery) {
-      result = result.filter(
-        (song) =>
-          song.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          song.artist.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
-
-    setFilteredSongs(result);
-  }, [songs, category, searchQuery]);
+  const [songsWithDuration, setSongsWithDuration] = useState(songs);
+  console.log(songs)
 
   useEffect(() => {
     const fetchDuration = (audioUrl) => {
@@ -46,11 +27,35 @@ const MusicList = ({ songs, onSelectSong, currentSong }) => {
           return { ...song, duration };
         })
       );
-      setFilteredSongs(result);
+      setSongsWithDuration(result);
+      console.log(result)
     };
-
     fetchSongsWithDuration();
-  }, [songs, category, searchQuery]);
+  }, [songs]);
+
+  useEffect(() => {
+    let result = songsWithDuration;
+
+    // Filter by category
+    if (category === "top-track") {
+        console.log(category)
+      result = result.filter((song) => song.top_track === true);
+      console.log(result);
+    }
+
+    // Filter by search query
+    if (searchQuery) {
+      result = result.filter(
+        (song) =>
+          song.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          song.artist.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+    console.log(result)
+    setFilteredSongs(result);
+  }, [songsWithDuration, category, searchQuery]);
+
+  
 
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
@@ -61,7 +66,7 @@ const MusicList = ({ songs, onSelectSong, currentSong }) => {
   };
 
   return (
-    <div className="music-list-container">
+    <div className={showList ? "music-list-container" : "music-list-container display-none"}>
       <div className="music-category-container">
         <button
           className={`music-category-button ${category === "" ? "active" : ""}`}

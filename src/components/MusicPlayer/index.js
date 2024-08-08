@@ -7,7 +7,8 @@ import nextTrack from "../../images/nextTrack.svg";
 import play from "../../images/play.svg";
 import pause from "../../images/pause.svg";
 
-const MusicPlayer = ({ song, songs, onSelectSong }) => {
+
+const MusicPlayer = ({ song, songs, onSelectSong, showList }) => {
   const [currentSong, setCurrentSong] = useState(song);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -77,7 +78,7 @@ const MusicPlayer = ({ song, songs, onSelectSong }) => {
   };
 
   return (
-    <div className="music-player-container">
+    <div className={showList ? "music-player-container display-none" : "music-player-container" }>
       <div className="song-heading-artist-container">
         <h1 className="heading">{song.name}</h1>
         <p className="artist-name">{song.artist}</p>

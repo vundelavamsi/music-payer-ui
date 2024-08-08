@@ -3,7 +3,7 @@ import './index.css'
 // import cover from "../../images/cover.svg"
 
 const MusicItem = ({eachSong, onClick, currentSong}) => {
-    console.log(eachSong)
+    // console.log(eachSong)
     const formatDuration = (duration) => {
         const minutes = Math.floor(duration / 60);
         const seconds = Math.floor(duration % 60);
